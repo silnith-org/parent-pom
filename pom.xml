@@ -20,7 +20,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<silnith.toolchain.vendor>openjdk</silnith.toolchain.vendor>
-		<silnith.toolchain.version>1.11</silnith.toolchain.version>
+		<silnith.toolchain.version>1.14</silnith.toolchain.version>
 	</properties>
 	<build>
 		<pluginManagement>
