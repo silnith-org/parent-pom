@@ -203,35 +203,26 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.wildfly.plugins</groupId>
-				<artifactId>wildfly-maven-plugin</artifactId>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven3-plugin</artifactId>
 				<configuration>
-					<username>bob</username>
-					<password>baab</password>
-					<addUser>
-						<users>
-							<user>
-								<username>bob</username>
-								<password>baab</password>
-								<realm>ManagementRealm</realm>
-							</user>
-						</users>
-					</addUser>
+					<container>
+						<containerId>wildfly24x</containerId>
+					</container>
 				</configuration>
 				<executions>
 					<execution>
-						<id>start-wildfly</id>
+						<id>start-container</id>
 						<phase>pre-integration-test</phase>
 						<goals>
 							<goal>start</goal>
-							<goal>deploy</goal>
 						</goals>
 					</execution>
 					<execution>
-						<id>shutdown-wildfly</id>
+						<id>stop-container</id>
 						<phase>post-integration-test</phase>
 						<goals>
-							<goal>shutdown</goal>
+							<goal>stop</goal>
 						</goals>
 					</execution>
 				</executions>

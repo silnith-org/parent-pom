@@ -33,7 +33,7 @@ class WebControllerITCase {
     @BeforeEach
     void setUp() throws Exception {
         client = ClientBuilder.newClient();
-        serviceTarget = client.target("http://localhost:8080/application-0.0.1-SNAPSHOT/application");
+        serviceTarget = client.target("http://localhost:8080/application/application");
     }
 
     @AfterEach
