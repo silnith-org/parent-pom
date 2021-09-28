@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd ">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.silnith</groupId>
@@ -23,7 +23,6 @@
 	<ciManagement />
 	<properties>
 		<maven.compiler.release>11</maven.compiler.release>
-		<maven.compiler.showWarnings>true</maven.compiler.showWarnings>
 		<silnith.toolchain.jdk.version>[1.11,2.0)</silnith.toolchain.jdk.version>
 	</properties>
 	<dependencyManagement></dependencyManagement>
@@ -159,6 +158,20 @@
 		</dependency>
 	</dependencies>
 	<build>
+		<extensions></extensions>
+		<defaultGoal></defaultGoal>
+		<resources>
+			<resource>
+				<filtering>true</filtering>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<filtering>true</filtering>
+				<directory>src/test/resources</directory>
+			</testResource>
+		</testResources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -191,11 +204,11 @@
 						</goals>
 						<configuration>
 							<portNames>
-								<portName>not.wildfly.port</portName>
-								<portName>jboss.http.port</portName>
-								<portName>jboss.https.port</portName>
-								<portName>jboss.management.http.port</portName>
-								<portName>jboss.management.https.port</portName>
+								<portName>cargo.ajp.port</portName>
+								<portName>cargo.servlet.http.port</portName>
+								<portName>cargo.servlet.https.port</portName>
+								<portName>cargo.management.http.port</portName>
+								<portName>cargo.management.https.port</portName>
 							</portNames>
 							<randomPort>true</randomPort>
 						</configuration>
@@ -206,6 +219,22 @@
 				<groupId>org.codehaus.cargo</groupId>
 				<artifactId>cargo-maven3-plugin</artifactId>
 				<configuration>
+					<configuration>
+						<properties>
+							<cargo.jboss.ajp.port>${cargo.ajp.port}</cargo.jboss.ajp.port>
+							<cargo.tomcat.ajp.port>${cargo.ajp.port}</cargo.tomcat.ajp.port>
+
+							<cargo.servlet.port>${cargo.servlet.http.port}</cargo.servlet.port>
+
+							<cargo.jboss.https.port>${cargo.servlet.https.port}</cargo.jboss.https.port>
+							<cargo.glassfish.http.ssl.port>${cargo.servlet.https.port}</cargo.glassfish.http.ssl.port>
+
+							<cargo.jboss.management-http.port>${cargo.management.http.port}</cargo.jboss.management-http.port>
+							<cargo.glassfish.admin.port>${cargo.management.http.port}</cargo.glassfish.admin.port>
+
+							<cargo.jboss.management-https.port>${cargo.management.https.port}</cargo.jboss.management-https.port>
+						</properties>
+					</configuration>
 					<container>
 						<containerId>wildfly24x</containerId>
 					</container>

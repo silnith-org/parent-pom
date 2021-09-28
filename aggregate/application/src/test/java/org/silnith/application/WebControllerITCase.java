@@ -2,6 +2,9 @@ package org.silnith.application;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Locale;
+import java.util.Properties;
+
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -19,11 +22,20 @@ import org.junit.jupiter.api.Test;
 
 class WebControllerITCase {
     
+    static String host;
+    static String name;
+    static int port;
+    
     Client client;
     WebTarget serviceTarget;
 
     @BeforeAll
     static void setUpBeforeClass() throws Exception {
+        final Properties properties = new Properties();
+        properties.load(WebControllerITCase.class.getResourceAsStream("port.properties"));
+        host = "localhost";
+        name = properties.getProperty("servlet.name");
+        port = Integer.parseInt(properties.getProperty("servlet.port"));
     }
 
     @AfterAll
@@ -33,7 +45,10 @@ class WebControllerITCase {
     @BeforeEach
     void setUp() throws Exception {
         client = ClientBuilder.newClient();
-        serviceTarget = client.target("http://localhost:8080/application/application");
+        final String uri = String.format(Locale.ENGLISH,
+                "http://%s:%d/%s/%s",
+                host, port, name, WebApp.APPLICATION_PATH);
+        serviceTarget = client.target(uri);
     }
 
     @AfterEach

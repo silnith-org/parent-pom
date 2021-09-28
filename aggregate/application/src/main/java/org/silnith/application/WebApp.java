@@ -10,4 +10,6 @@ import javax.ws.rs.core.Application;
 @ApplicationPath("application")
 public class WebApp extends Application {
 
+    public static final String APPLICATION_PATH = "application";
+
 }
