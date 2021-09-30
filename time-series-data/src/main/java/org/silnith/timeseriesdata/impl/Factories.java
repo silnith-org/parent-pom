@@ -1,6 +1,6 @@
 package org.silnith.timeseriesdata.impl;
 
-import java.time.Instant;
+import java.time.ZonedDateTime;
 import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
 
@@ -11,8 +11,8 @@ public class Factories {
         return new EventCounter.Factory() {
 
             @Override
-            public EventCounter getEventCounter(final Instant instant) {
-                return new LeafCounter(instant, ChronoUnit.SECONDS);
+            public EventCounter getEventCounter(final ZonedDateTime zonedDateTime) {
+                return new LeafCounter(zonedDateTime, ChronoUnit.SECONDS);
             }
 
         };
@@ -22,8 +22,8 @@ public class Factories {
         return new EventCounter.Factory() {
 
             @Override
-            public EventCounter getEventCounter(final Instant instant) {
-                return new TimeRangeCounter(instant, ChronoField.SECOND_OF_MINUTE, getCounterForSecond());
+            public EventCounter getEventCounter(final ZonedDateTime zonedDateTime) {
+                return new TimeRangeCounter(zonedDateTime, ChronoField.SECOND_OF_MINUTE, getCounterForSecond());
             }
 
         };
@@ -33,8 +33,8 @@ public class Factories {
         return new EventCounter.Factory() {
 
             @Override
-            public EventCounter getEventCounter(final Instant instant) {
-                return new TimeRangeCounter(instant, ChronoField.MINUTE_OF_HOUR, getCounterForMinute());
+            public EventCounter getEventCounter(final ZonedDateTime zonedDateTime) {
+                return new TimeRangeCounter(zonedDateTime, ChronoField.MINUTE_OF_HOUR, getCounterForMinute());
             }
 
         };
@@ -44,8 +44,8 @@ public class Factories {
         return new EventCounter.Factory() {
 
             @Override
-            public EventCounter getEventCounter(final Instant instant) {
-                return new TimeRangeCounter(instant, ChronoField.HOUR_OF_DAY, getCounterForHour());
+            public EventCounter getEventCounter(final ZonedDateTime zonedDateTime) {
+                return new TimeRangeCounter(zonedDateTime, ChronoField.HOUR_OF_DAY, getCounterForHour());
             }
 
         };

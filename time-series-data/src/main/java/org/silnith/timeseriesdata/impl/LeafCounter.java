@@ -1,6 +1,5 @@
 package org.silnith.timeseriesdata.impl;
 
-import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.time.temporal.TemporalUnit;
 import java.util.Collections;
@@ -16,36 +15,29 @@ import java.util.concurrent.ConcurrentMap;
  */
 public class LeafCounter implements EventCounter {
 
-    private final Instant start;
-    private final Instant end;
+    private final ZonedDateTime start;
+    private final ZonedDateTime end;
     private final ConcurrentMap<String, Long> counts;
-
-    public LeafCounter(final Instant instant, final TemporalUnit unit) {
-        super();
-        start = instant.truncatedTo(unit);
-        end = start.plus(unit.getDuration());
-        counts = new ConcurrentHashMap<>();
-    }
 
     public LeafCounter(final ZonedDateTime zonedDateTime, final TemporalUnit unit) {
         super();
-        start = zonedDateTime.truncatedTo(unit).toInstant();
+        start = zonedDateTime.truncatedTo(unit);
         end = start.plus(unit.getDuration());
         counts = new ConcurrentHashMap<>();
     }
 
     @Override
-    public Instant getStart() {
+    public ZonedDateTime getStart() {
         return start;
     }
 
     @Override
-    public Instant getEnd() {
+    public ZonedDateTime getEnd() {
         return end;
     }
 
     @Override
-    public void addEvent(final String event, final Instant timestamp) {
+    public void addEvent(final String event, final ZonedDateTime timestamp) {
         if (start.isAfter(timestamp)) {
             throw new IllegalArgumentException();
         }
@@ -63,11 +55,11 @@ public class LeafCounter implements EventCounter {
     }
 
     @Override
-    public NavigableMap<Instant, Long> getEventCounts(final String name, final TemporalUnit granularity,
-            final Instant start, final Instant end) {
+    public NavigableMap<ZonedDateTime, Long> getEventCounts(final String name, final TemporalUnit granularity,
+            final ZonedDateTime start, final ZonedDateTime end) {
         final Long count = counts.get(name);
         if (count != null && start.isBefore(this.end) && end.isAfter(this.start)) {
-            final NavigableMap<Instant, Long> sortedMap = new TreeMap<>();
+            final NavigableMap<ZonedDateTime, Long> sortedMap = new TreeMap<>();
             sortedMap.put(this.start, count);
             return sortedMap;
         } else {
