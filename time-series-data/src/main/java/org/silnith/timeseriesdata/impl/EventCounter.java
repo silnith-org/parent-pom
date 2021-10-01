@@ -1,11 +1,11 @@
 package org.silnith.timeseriesdata.impl;
 
 import java.time.ZonedDateTime;
-import java.time.temporal.TemporalUnit;
-import java.util.NavigableMap;
+
+import org.silnith.timeseriesdata.TimeSeriesData;
 
 
-public interface EventCounter {
+public interface EventCounter extends TimeSeriesData {
 
     @FunctionalInterface
     interface Factory {
@@ -17,10 +17,5 @@ public interface EventCounter {
     ZonedDateTime getStart();
 
     ZonedDateTime getEnd();
-
-    void addEvent(String event, ZonedDateTime timestamp);
-
-    NavigableMap<ZonedDateTime, Long> getEventCounts(String event, TemporalUnit granularity, ZonedDateTime start,
-            ZonedDateTime end);
 
 }
