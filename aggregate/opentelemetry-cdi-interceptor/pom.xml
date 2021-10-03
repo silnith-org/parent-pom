@@ -1,59 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.silnith</groupId>
-        <artifactId>aggregate</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
-    </parent>
-    <artifactId>opentelemetry-cdi-interceptor</artifactId>
-    <packaging>jar</packaging>
-    <name>OpenTelemetry CDI Interceptor</name>
-    <url />
-    <description>A CDI interceptor that exports to OpenTelemetry.</description>
-    <inceptionYear />
-    <organization />
-    <developers />
-    <licenses />
-    <scm />
-    <issueManagement />
-    <ciManagement />
-    <properties>
-        <maven.compiler.release>8</maven.compiler.release>
-        <silnith.toolchain.jdk.version>[1.9,2.0)</silnith.toolchain.jdk.version>
-    </properties>
-    <dependencyManagement></dependencyManagement>
-    <dependencies>
-        <dependency>
-            <groupId>io.opentelemetry</groupId>
-            <artifactId>opentelemetry-api</artifactId>
-        </dependency>
-        <dependency>
-        	<groupId>jakarta.inject</groupId>
-        	<artifactId>jakarta.inject-api</artifactId>
-        </dependency>
-        <dependency>
-        	<groupId>jakarta.interceptor</groupId>
-        	<artifactId>jakarta.interceptor-api</artifactId>
-        </dependency>
-        <dependency>
-        	<groupId>jakarta.enterprise</groupId>
-        	<artifactId>jakarta.enterprise.cdi-api</artifactId>
-        </dependency>
-    </dependencies>
-    <build>
-        <plugins>
-        </plugins>
-    </build>
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </reporting>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.silnith</groupId>
+		<artifactId>aggregate</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	<artifactId>opentelemetry-cdi-interceptor</artifactId>
+	<packaging>jar</packaging>
+	<name>OpenTelemetry CDI Interceptor</name>
+	<url />
+	<description>A CDI interceptor that exports to OpenTelemetry.
+	</description>
+	<inceptionYear />
+	<organization />
+	<developers />
+	<licenses />
+	<scm />
+	<issueManagement />
+	<ciManagement />
+	<properties>
+		<maven.compiler.release>8</maven.compiler.release>
+		<silnith.toolchain.jdk.version>[1.9,2.0)</silnith.toolchain.jdk.version>
+	</properties>
+	<dependencyManagement />
+	<dependencies>
+		<dependency>
+			<groupId>io.opentelemetry</groupId>
+			<artifactId>opentelemetry-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.inject</groupId>
+			<artifactId>jakarta.inject-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.interceptor</groupId>
+			<artifactId>jakarta.interceptor-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.enterprise</groupId>
+			<artifactId>jakarta.enterprise.cdi-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-params</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<version>3.12.4</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins />
+	</build>
+	<reporting>
+		<plugins />
+	</reporting>
 </project>

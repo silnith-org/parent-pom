@@ -5,6 +5,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Typed;
 import javax.inject.Inject;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
@@ -28,6 +29,7 @@ import org.w3c.dom.bootstrap.DOMImplementationRegistry;
  */
 @XHTML
 @ApplicationScoped
+@Typed({ Renderer.class, })
 public class XHTMLRenderer implements Renderer {
 
     private static final String XHTML_NAMESPACE_URI = "http://www.w3.org/1999/xhtml";
@@ -35,27 +37,16 @@ public class XHTMLRenderer implements Renderer {
 
     private final String xhtmlPrefix = "";
 
-    private DOMImplementation domImplementation;
-    private Jsonb jsonb;
-    private JsonReaderFactory jsonReaderFactory;
+    private final DOMImplementation domImplementation;
+    private final Jsonb jsonb;
+    private final JsonReaderFactory jsonReaderFactory;
 
     @Inject
-    public XHTMLRenderer() {
+    public XHTMLRenderer(final DOMImplementationRegistry domImplementationRegistry, final Jsonb jsonb,
+            final JsonReaderFactory jsonReaderFactory) {
         super();
-    }
-
-    @Inject
-    public void setDomImplementationRegistry(final DOMImplementationRegistry domImplementationRegistry) {
         domImplementation = domImplementationRegistry.getDOMImplementation("XML 1.0");
-    }
-
-    @Inject
-    public void setJsonb(final Jsonb jsonb) {
         this.jsonb = jsonb;
-    }
-
-    @Inject
-    public void setJsonReaderFactory(final JsonReaderFactory jsonReaderFactory) {
         this.jsonReaderFactory = jsonReaderFactory;
     }
 

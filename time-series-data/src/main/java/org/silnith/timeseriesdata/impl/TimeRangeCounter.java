@@ -12,10 +12,11 @@ import java.util.TreeMap;
 /**
  * An event counter that keeps individual counters for each time unit in the
  * temporal range.
- * 
- * <p>This event counter only tracks a specific time range.  Anything outside of
+ * <p>
+ * This event counter only tracks a specific time range. Anything outside of
  * that time range is considered an invalid input and will result in an
- * {@link IllegalArgumentException}.</p>
+ * {@link IllegalArgumentException}.
+ * </p>
  */
 public class TimeRangeCounter implements EventCounter {
 

@@ -1,6 +1,5 @@
 package org.silnith.render;
 
-import org.silnith.cdi.opentelemetry.Traced;
 import org.w3c.dom.Document;
 
 
@@ -16,7 +15,6 @@ public interface Renderer {
      * @return a document representing the object
      * @throws RenderException if there was any problem generating the document
      */
-    @Traced
     Document renderAsDocument(Object object) throws RenderException;
 
 }

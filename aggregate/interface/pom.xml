@@ -25,23 +25,18 @@
 		<maven.compiler.release>8</maven.compiler.release>
 		<silnith.toolchain.jdk.version>[1.8,1.9)</silnith.toolchain.jdk.version>
 	</properties>
-	<dependencyManagement></dependencyManagement>
+	<dependencyManagement />
 	<dependencies>
-        <dependency>
-            <groupId>org.silnith</groupId>
-            <artifactId>opentelemetry-cdi-interceptor</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 	<build>
-		<plugins>
-		</plugins>
+		<plugins />
 	</build>
 	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-project-info-reports-plugin</artifactId>
-			</plugin>
-		</plugins>
+		<plugins />
 	</reporting>
 </project>

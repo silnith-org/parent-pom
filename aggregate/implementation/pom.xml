@@ -25,7 +25,7 @@
 		<maven.compiler.release>8</maven.compiler.release>
 		<silnith.toolchain.jdk.version>[1.9,2.0)</silnith.toolchain.jdk.version>
 	</properties>
-	<dependencyManagement></dependencyManagement>
+	<dependencyManagement />
 	<dependencies>
 		<dependency>
 			<groupId>org.silnith</groupId>
@@ -38,26 +38,39 @@
 		<dependency>
 			<groupId>jakarta.inject</groupId>
 			<artifactId>jakarta.inject-api</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>jakarta.json</groupId>
 			<artifactId>jakarta.json-api</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>jakarta.json.bind</groupId>
 			<artifactId>jakarta.json.bind-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.enterprise</groupId>
+			<artifactId>jakarta.enterprise.cdi-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse</groupId>
+			<artifactId>yasson</artifactId>
+			<version>1.0.9</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 	<build>
-		<plugins>
-		</plugins>
+		<plugins />
 	</build>
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </reporting>
+	<reporting>
+		<plugins />
+	</reporting>
 </project>

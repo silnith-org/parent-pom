@@ -1,58 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.silnith</groupId>
-        <artifactId>parent-pom</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
-    </parent>
-    <artifactId>time-series-data</artifactId>
-    <packaging>jar</packaging>
-    <name>Time Series Data</name>
-    <url />
-    <description>time-series-data</description>
-    <inceptionYear />
-    <organization />
-    <developers />
-    <licenses />
-    <scm />
-    <issueManagement />
-    <ciManagement />
-    <properties>
-        <maven.compiler.release>8</maven.compiler.release>
-        <silnith.toolchain.jdk.version>[1.9,2.0)</silnith.toolchain.jdk.version>
-    </properties>
-    <dependencyManagement>
-    	<dependencies>
-    		<dependency>
-    			<groupId>org.junit</groupId>
-    			<artifactId>junit-bom</artifactId>
-    			<version>5.8.1</version>
-    			<type>pom</type>
-    			<scope>import</scope>
-    		</dependency>
-    	</dependencies>
-    </dependencyManagement>
-    <dependencies>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-    <build>
-        <plugins>
-        </plugins>
-    </build>
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </reporting>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.silnith</groupId>
+		<artifactId>parent-pom</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	<artifactId>time-series-data</artifactId>
+	<packaging>jar</packaging>
+	<name>Time Series Data</name>
+	<url />
+	<description>time-series-data</description>
+	<inceptionYear />
+	<organization />
+	<developers />
+	<licenses />
+	<scm />
+	<issueManagement />
+	<ciManagement />
+	<properties>
+		<maven.compiler.release>8</maven.compiler.release>
+		<silnith.toolchain.jdk.version>[1.9,2.0)</silnith.toolchain.jdk.version>
+	</properties>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.junit</groupId>
+				<artifactId>junit-bom</artifactId>
+				<version>5.8.1</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins />
+	</build>
+	<reporting>
+		<plugins />
+	</reporting>
 </project>

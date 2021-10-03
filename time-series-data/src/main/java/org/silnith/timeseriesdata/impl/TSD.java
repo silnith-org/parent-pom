@@ -37,8 +37,8 @@ public class TSD implements TimeSeriesData {
         final ZonedDateTime start = eventCounter.getStart();
         counts.putIfAbsent(start, eventCounter);
         /*
-         * If the putIfAbsent was a no-op, then this will get the previous
-         * event counter rather than the one that was just instantiated.
+         * If the putIfAbsent was a no-op, then this will get the previous event counter
+         * rather than the one that was just instantiated.
          */
         counts.get(start).addEvent(event, timestamp);
     }

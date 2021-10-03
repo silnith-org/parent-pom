@@ -9,6 +9,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.silnith.cdi.opentelemetry.Traced;
 import org.silnith.render.RenderException;
 import org.silnith.render.Renderer;
 import org.silnith.render.xml.XHTML;
@@ -18,15 +19,24 @@ import org.silnith.render.xml.XHTML;
  * A controller for web stuff.
  */
 @Path("web")
+@Traced
 public class WebController {
 
-    @Inject
-    @XHTML
     private Renderer xhtmlRenderer;
+
+    @Inject
+    public WebController() {
+        super();
+    }
+
+    @Inject
+    public void setXhtmlRenderer(@XHTML final Renderer xhtmlRenderer) {
+        this.xhtmlRenderer = xhtmlRenderer;
+    }
 
     /**
      * Returns a response of type {@literal MediaType#TEXT_PLAIN}.
-     * 
+     *
      * @return a {@literal MediaType#TEXT_PLAIN} response
      */
     @GET
@@ -37,7 +47,7 @@ public class WebController {
 
     /**
      * Returns a response of type {@literal MediaType#APPLICATION_XHTML_XML}.
-     * 
+     *
      * @return an {@literal MediaType#APPLICATION_XHTML_XML} response
      */
     @GET
@@ -47,8 +57,9 @@ public class WebController {
     }
 
     /**
-     * Returns the request body as a response of type {@literal MediaType#APPLICATION_XHTML_XML}.
-     * 
+     * Returns the request body as a response of type
+     * {@literal MediaType#APPLICATION_XHTML_XML}.
+     *
      * @param body a {@code POST} body of type {@literal MediaType#APPLICATION_JSON}
      * @return an {@literal MediaType#APPLICATION_XHTML_XML} response
      */
