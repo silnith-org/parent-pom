@@ -1,0 +1,32 @@
+.axis {
+    color: black;
+    font-size: 12pt;
+    stroke-width: 1px;
+}
+.unit-circle {
+    color: black;
+}
+.angle {
+    color: blue;
+}
+.cosine {
+    color: green;
+}
+.sine {
+    color: red;
+}
+.unit-circle,
+.angle {
+    stroke-width: 3px;
+}
+.angle circle,
+.cosine,
+.sine {
+    stroke-width: 4px;
+}
+.unit-circle,
+.angle,
+.cosine,
+.sine {
+    font-size: xx-large;
+}

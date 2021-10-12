@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="trigonometry.css" type="text/css"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+    width="8in" height="8in" viewBox="-300 -300 600 600" preserveAspectRatio="xMidYMid meet">
+    <title>A Concise Description of Trigonometry</title>
+    <desc>This is an attempt to summarize the core of trigonometry in a single graph.</desc>
+    <defs>
+        <style type="text/css">
+            <![CDATA[
+.axis {
+    color: black;
+    font-size: 12pt;
+    stroke-width: 1px;
+}
+.unit-circle {
+    color: black;
+}
+.angle {
+    color: blue;
+}
+.cosine {
+    color: green;
+}
+.sine {
+    color: red;
+}
+.unit-circle,
+.angle {
+    stroke-width: 3px;
+}
+.angle circle,
+.cosine,
+.sine {
+    stroke-width: 3px;
+}
+.unit-circle,
+.angle,
+.cosine,
+.sine {
+    font-size: xx-large;
+}
+            ]]>
+        </style>
+        <clipPath id="upperRightQuadrantSkewed" transform="skewX(60)">
+            <desc>A handy clip path for the arc showing the angle &#x03b8;.</desc>
+            <rect x="0" y="0" width="300" height="300" />
+        </clipPath>
+        <clipPath id="upperRightQuadrant">
+            <desc>A clip path limiting the cosine and sine projection lines to the same quadrant as the angle itself.</desc>
+            <rect x="0" y="0" width="300" height="300" />
+        </clipPath>
+    </defs>
+    <g fill="currentColor" class="axis">
+        <title>The Axes</title>
+        <desc>The X axis and Y axis represented as lines, along with some coordinates identifying that the circle is a unit circle.</desc>
+        <g>
+            <title>The Origin</title>
+            <text x="0" y="0"
+                dominant-baseline="text-before-edge" alignment-baseline="text-before-edge"
+                text-anchor="end">(0, 0)</text>
+        </g>
+        <g>
+            <title>The X Axis</title>
+            <line x1="-1000" y1="0" x2="1000" y2="0" stroke="currentColor" />
+            <text x="-200" y="0"
+                dominant-baseline="text-before-edge" alignment-baseline="text-before-edge"
+                text-anchor="end">(-1, 0)</text>
+            <text x="200" y="0"
+                dominant-baseline="text-before-edge" alignment-baseline="text-before-edge"
+                text-anchor="start">(1, 0)</text>
+        </g>
+        <g>
+            <title>The Y Axis</title>
+            <line x1="0" y1="-1000" x2="0" y2="1000" stroke="currentColor" />
+            <text x="0" y="200"
+                dominant-baseline="text-before-edge" alignment-baseline="text-before-edge"
+                text-anchor="end">(0, -1)</text>
+            <text x="0" y="-200"
+                dominant-baseline="text-after-edge" alignment-baseline="text-after-edge"
+                baseline-shift="super" text-anchor="end">(0, 1)</text>
+        </g>
+    </g>
+    <circle cx="0" cy="0" r="200" stroke="currentColor" fill="none"
+        transform="scale(1 -1)" class="unit-circle">
+        <title>A Unit Circle</title>
+        <desc>A circle centered at the origin with radius 1.</desc>
+    </circle>
+    <g fill="currentColor" class="angle">
+        <title>The angle &#x03b8;.</title>
+        <desc>The point that a line from the origin drawn at angle &#x03b8; intercepts the unit circle is (cosine &#x03b8;, sine &#x03b8;).  In other words, the cosine of the angle is the distance along the X axis, and the sine is the distance along the Y axis.</desc>
+        <text x="0" y="0"
+            dominant-baseline="central" alignment-baseline="central"
+            text-anchor="start"
+            transform="rotate(-15) translate(100 0) rotate(15)">&#x03b8;</text>
+        <g transform="scale(1 -1)">
+            <circle r="100" cx="0" cy="0"
+                stroke="currentColor" stroke-dasharray="4px 2px" fill="none"
+                clip-path="url(#upperRightQuadrantSkewed)" />
+            <line x1="0" y1="0" x2="200" y2="0" stroke="currentColor"
+                transform="rotate(30)"/>
+        </g>
+    </g>
+    <g fill="currentColor" class="sine">
+        <title>The sine of &#x03b8;.</title>
+        <desc>The sine of the angle is the projection of the intersection point onto the Y axis.  Wherever the line at angle &#x03b8; crosses the unit circle, go sideways from there to the Y axis.  Whatever the distance along the Y axis is, that is the value of the sine.</desc>
+        <text x="0" y="-50"
+            dominant-baseline="central" alignment-baseline="central"
+            text-anchor="end">sine &#x03b8;</text>
+        <g transform="scale(1 -1)">
+            <g clip-path="url(#upperRightQuadrant)">
+                <line x1="200" y1="0" x2="200" y2="1000"
+                    stroke="currentColor" stroke-dasharray="4px 2px"
+                    transform="rotate(30) skewX(-60)"/>
+            </g>
+            <line x1="0" y1="0" x2="200" y2="0" stroke="currentColor" stroke-linecap="round"
+                transform="skewX(-60) rotate(30)"/>
+        </g>
+    </g>
+    <g fill="currentColor" class="cosine">
+        <title>The cosine of &#x03b8;.</title>
+        <desc>The cosine of the angle is the projection of the intersection point onto the X axis.  Wherever the line at angle &#x03b8; crosses the unit circle, drop straight down from there to the X axis.  Whatever the distance along the X axis is, that is the value of the cosine.</desc>
+        <text x="100" y="0"
+            dominant-baseline="text-before-edge" alignment-baseline="text-before-edge"
+            text-anchor="middle">cosine &#x03b8;</text>
+        <g transform="scale(1 -1)">
+            <g clip-path="url(#upperRightQuadrant)">
+                <line x1="200" y1="-1000" x2="200" y2="0"
+                    stroke="currentColor" stroke-dasharray="4px 2px"
+                    transform="rotate(30) skewX(30)"/>
+            </g>
+            <line x1="0" y1="0" x2="200" y2="0" stroke="currentColor" stroke-linecap="round"
+                transform="skewY(-30) rotate(30)"/>
+        </g>
+    </g>
+</svg>
