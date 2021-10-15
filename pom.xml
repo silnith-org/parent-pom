@@ -15,7 +15,7 @@
     <inceptionYear>2020</inceptionYear>
     <organization>
         <name>silnith.org</name>
-        <url>https://silnith.org/</url>
+        <url>https://silnith.org</url>
     </organization>
     <licenses>
         <license>
@@ -32,7 +32,7 @@
             <email>silnith@gmail.com</email>
             <url>https://github.com/silnith</url>
             <organization>silnith.org</organization>
-            <organizationUrl>https://silnith.org/</organizationUrl>
+            <organizationUrl>https://silnith.org</organizationUrl>
             <roles>
                 <role>developer</role>
             </roles>
@@ -43,8 +43,10 @@
     <contributors />
     <mailingLists />
     <scm>
-        <connection>scm:git:https://github.com/silnith-org/parent-pom.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/silnith-org/parent-pom.git</developerConnection>
+        <connection>scm:git:https://github.com/silnith-org/parent-pom.git
+        </connection>
+        <developerConnection>scm:git:ssh://git@github.com/silnith-org/parent-pom.git
+        </developerConnection>
         <tag>HEAD</tag>
         <url>https://github.com/silnith-org/parent-pom</url>
     </scm>
@@ -62,7 +64,6 @@
         <snapshotRepository />
         <site />
         <downloadUrl />
-        <relocation />
     </distributionManagement>
     <properties>
         <argLine />
@@ -77,14 +78,19 @@
         <maven.source.skip>false</maven.source.skip>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <pgp.keys.map.version>2021.10.13</pgp.keys.map.version>
         <silnith.toolchain.jdk.version>[1.9,2.0)</silnith.toolchain.jdk.version>
     </properties>
+    <modules>
+        <module>browser</module>
+        
+    </modules>
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.simplify4u</groupId>
                 <artifactId>pgp-keys-map</artifactId>
-                <version>2021.09.18</version>
+                <version>${pgp.keys.map.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -96,7 +102,8 @@
         <scriptSourceDirectory>src/main/scripts</scriptSourceDirectory>
         <testSourceDirectory>src/test/java</testSourceDirectory>
         <outputDirectory>${project.build.directory}/classes</outputDirectory>
-        <testOutputDirectory>${project.build.directory}/test-classes</testOutputDirectory>
+        <testOutputDirectory>${project.build.directory}/test-classes
+        </testOutputDirectory>
         <extensions />
         <defaultGoal>clean verify site</defaultGoal>
         <resources>
@@ -134,7 +141,7 @@
                         <dependency>
                             <groupId>com.puppycrawl.tools</groupId>
                             <artifactId>checkstyle</artifactId>
-                            <version>9.0</version>
+                            <version>9.0.1</version>
                         </dependency>
                     </dependencies>
                 </plugin>
@@ -295,7 +302,7 @@
                 <plugin>
                     <groupId>org.owasp</groupId>
                     <artifactId>dependency-check-maven</artifactId>
-                    <version>6.3.2</version>
+                    <version>6.4.1</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -365,6 +372,18 @@
             <plugin>
                 <groupId>org.simplify4u.plugins</groupId>
                 <artifactId>pgpverify-maven-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.simplify4u</groupId>
+                        <artifactId>pgp-keys-map</artifactId>
+                        <version>${pgp.keys.map.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.silnith</groupId>
+                        <artifactId>pgp-keys-filler</artifactId>
+                        <version>0.0.1-SNAPSHOT</version>
+                    </dependency>
+                </dependencies>
                 <executions>
                     <execution>
                         <goals>
@@ -374,11 +393,18 @@
                 </executions>
                 <configuration>
                     <disableChecksum>true</disableChecksum>
-                    <failWeakSignature>false</failWeakSignature>
-                    <pgpKeyServerLoadBalance>false</pgpKeyServerLoadBalance>
-                    <skip>false</skip>
-                    <verifyAtypical>false</verifyAtypical>
-                    <verifyPluginDependencies>false</verifyPluginDependencies>
+                    <failWeakSignature>true</failWeakSignature>
+                    <keysMapLocations>
+                        <keysMapLocation>
+                            <location>/pgp-keys-map.list</location>
+                        </keysMapLocation>
+                        <keysMapLocation>
+                            <location>/additional.list</location>
+                        </keysMapLocation>
+                    </keysMapLocations>
+                    <pgpKeyServerLoadBalance>true</pgpKeyServerLoadBalance>
+                    <verifyAtypical>true</verifyAtypical>
+                    <verifyPluginDependencies>true</verifyPluginDependencies>
                     <verifyPlugins>true</verifyPlugins>
                     <verifyPomFiles>true</verifyPomFiles>
                     <verifyProvidedDependencies>false</verifyProvidedDependencies>
