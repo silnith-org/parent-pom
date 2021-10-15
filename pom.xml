@@ -77,6 +77,7 @@
         <maven.source.skip>false</maven.source.skip>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <pgp.keys.map.version>2021.10.13</pgp.keys.map.version>
         <silnith.toolchain.jdk.version>[1.9,2.0)</silnith.toolchain.jdk.version>
     </properties>
     <dependencyManagement>
@@ -84,7 +85,7 @@
             <dependency>
                 <groupId>org.simplify4u</groupId>
                 <artifactId>pgp-keys-map</artifactId>
-                <version>2021.09.18</version>
+                <version>${pgp.keys.map.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -365,6 +366,13 @@
             <plugin>
                 <groupId>org.simplify4u.plugins</groupId>
                 <artifactId>pgpverify-maven-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.simplify4u</groupId>
+                        <artifactId>pgp-keys-map</artifactId>
+                        <version>${pgp.keys.map.version}</version>
+                    </dependency>
+                </dependencies>
                 <executions>
                     <execution>
                         <goals>
@@ -373,15 +381,21 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <keysMapLocations>
+                        <keysMapLocation>
+                            <location>/pgp-keys-map.list</location>
+                        </keysMapLocation>
+                    </keysMapLocations>
                     <disableChecksum>true</disableChecksum>
                     <failWeakSignature>false</failWeakSignature>
                     <pgpKeyServerLoadBalance>false</pgpKeyServerLoadBalance>
                     <skip>false</skip>
-                    <verifyAtypical>false</verifyAtypical>
-                    <verifyPluginDependencies>false</verifyPluginDependencies>
+                    <verifyAtypical>true</verifyAtypical>
+                    <verifyPluginDependencies>true</verifyPluginDependencies>
                     <verifyPlugins>true</verifyPlugins>
                     <verifyPomFiles>true</verifyPomFiles>
-                    <verifyProvidedDependencies>false</verifyProvidedDependencies>
+                    <verifyProvidedDependencies>false
+                    </verifyProvidedDependencies>
                     <verifyReactorDependencies>false</verifyReactorDependencies>
                     <verifySnapshots>false</verifySnapshots>
                     <verifySystemDependencies>false</verifySystemDependencies>
