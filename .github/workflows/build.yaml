@@ -29,6 +29,7 @@ jobs:
           distribution: temurin
           java-version: 17
           cache: maven
+          server-id: github-pgp-keys-filler
       - name: Configure Maven Toolchains
         uses: cactuslab/maven-toolchains-xml-action@v1
         with:
@@ -39,10 +40,16 @@ jobs:
             ]
       - name: Clean
         run: mvn clean
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Verify
         run: mvn verify
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Site
         run: mvn site
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
