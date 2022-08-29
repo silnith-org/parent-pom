@@ -40,8 +40,10 @@ jobs:
               {"jdkVersion": "1.8", "jdkHome": "${{ steps.setup-java-8.outputs.path }}"},
               {"jdkVersion": "1.17", "jdkHome": "${{ steps.setup-java-17.outputs.path }}"}
             ]
-      - name: Debug
-        run: mvn dependency:get -Dartifact=org.silnith:pgp-keys-filler:0.0.1-SNAPSHOT -DremoteRepositories=github-pgp-keys-filler
+      - name: Resolve Dependencies
+        run: mvn dependency:go-offline -DremoteRepositories=github-pgp-keys-filler
+      - name: Resolve PG Keys
+        run: mvn pgpverify:go-offline -Dpgpverify.quiet=true
       - id: setup-java-17-again
         name: Setup Java 17
         uses: actions/setup-java@v3
