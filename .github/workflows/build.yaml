@@ -31,7 +31,10 @@ jobs:
           distribution: temurin
           java-version: 17
           cache: maven
-          settings-servers: |
+      - name: Configure Maven Settings
+        uses: s4u/maven-settings-action@v2
+        with:
+          servers: |
             [{
               "id": "github",
               "username": "${env.GITHUB_ACTOR}",
