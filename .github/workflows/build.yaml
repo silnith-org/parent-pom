@@ -44,7 +44,7 @@ jobs:
               "id": "github-pgp-keys-filler",
               "username": "${env.GITHUB_ACTOR}",
               "password": "${env.GITHUB_TOKEN}"
-            },]
+            }]
       - name: Configure Maven Toolchains
         uses: cactuslab/maven-toolchains-xml-action@v1
         with:
