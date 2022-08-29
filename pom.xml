@@ -82,6 +82,14 @@
 		<maven.source.skip>false</maven.source.skip>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <pgpverify.disableChecksum>true</pgpverify.disableChecksum>
+        <pgpverify.failWeakSignature>false</pgpverify.failWeakSignature>
+        <pgpverify.keyserversLoadBalance>true</pgpverify.keyserversLoadBalance>
+        <pgpverify.quiet>true</pgpverify.quiet>
+        <pgpverify.skip>false</pgpverify.skip>
+        <pgpverify.verifyAtypical>true</pgpverify.verifyAtypical>
+        <pgpverify.verifyPluginDependencies>true</pgpverify.verifyPluginDependencies>
+        <pgpverify.verifyPlugins>true</pgpverify.verifyPlugins>
 		<pgp.keys.map.version>2022.07.02</pgp.keys.map.version>
 		<silnith.toolchain.jdk.version>[1.9,2.0)</silnith.toolchain.jdk.version>
 	</properties>
@@ -412,18 +420,6 @@
 							<location>/additional.list</location>
 						</keysMapLocation>
 					</keysMapLocations>
-					<disableChecksum>true</disableChecksum>
-					<failWeakSignature>false</failWeakSignature>
-					<pgpKeyServerLoadBalance>true</pgpKeyServerLoadBalance>
-					<skip>false</skip>
-					<verifyAtypical>true</verifyAtypical>
-					<verifyPluginDependencies>true</verifyPluginDependencies>
-					<verifyPlugins>true</verifyPlugins>
-					<verifyPomFiles>true</verifyPomFiles>
-					<verifyProvidedDependencies>false</verifyProvidedDependencies>
-					<verifyReactorDependencies>false</verifyReactorDependencies>
-					<verifySnapshots>false</verifySnapshots>
-					<verifySystemDependencies>false</verifySystemDependencies>
 				</configuration>
 			</plugin>
 			<plugin>
