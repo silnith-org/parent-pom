@@ -149,12 +149,12 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-checkstyle-plugin</artifactId>
-					<version>3.1.2</version>
+					<version>3.2.0</version>
 					<dependencies>
 						<dependency>
 							<groupId>com.puppycrawl.tools</groupId>
 							<artifactId>checkstyle</artifactId>
-							<version>10.3.2</version>
+							<version>10.3.3</version>
 						</dependency>
 					</dependencies>
 				</plugin>
@@ -235,7 +235,7 @@
 						<dependency>
 							<groupId>net.sourceforge.pmd</groupId>
 							<artifactId>pmd-java</artifactId>
-							<version>6.48.0</version>
+							<version>6.49.0</version>
 						</dependency>
 					</dependencies>
 				</plugin>
@@ -307,7 +307,7 @@
 				<plugin>
 					<groupId>org.simplify4u.plugins</groupId>
 					<artifactId>pgpverify-maven-plugin</artifactId>
-					<version>1.14.1</version>
+					<version>1.16.0</version>
 					<configuration>
 						<quiet>true</quiet>
 					</configuration>
