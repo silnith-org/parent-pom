@@ -16,45 +16,41 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
-      - id: setup-java-8
-        name: Setup Java 8
+        uses: actions/checkout@v4
+      - id: setup-java
+        name: Setup Java
         uses: actions/setup-java@v3
         with:
           distribution: temurin
-          java-version: 8
+          java-version: |
+            8
+            17
           cache: maven
-      - id: setup-java-17
-        name: Setup Java 17
-        uses: actions/setup-java@v3
-        with:
-          distribution: temurin
-          java-version: 17
-          cache: maven
-      - name: Configure Maven Settings
-        uses: s4u/maven-settings-action@v2
-        with:
-          servers: |
-            [{
-              "id": "github",
-              "username": "${env.GITHUB_ACTOR}",
-              "password": "${env.GITHUB_TOKEN}"
-            },
-            {
-              "id": "github-pgp-keys-filler",
-              "username": "${env.GITHUB_ACTOR}",
-              "password": "${env.GITHUB_TOKEN}"
-            }]
-      - name: Configure Maven Toolchains
-        uses: cactuslab/maven-toolchains-xml-action@v1
-        with:
-          toolchains: |
-            [
-              {"jdkVersion": "1.8", "jdkHome": "${{ steps.setup-java-8.outputs.path }}"},
-              {"jdkVersion": "1.17", "jdkHome": "${{ steps.setup-java-17.outputs.path }}"}
-            ]
+#      - name: Configure Maven Settings
+#        uses: s4u/maven-settings-action@v2
+#        with:
+#          servers: |
+#            [{
+#              "id": "github",
+#              "username": "${env.GITHUB_ACTOR}",
+#              "password": "${env.GITHUB_TOKEN}"
+#            },
+#            {
+#              "id": "github-pgp-keys-filler",
+#              "username": "${env.GITHUB_ACTOR}",
+#              "password": "${env.GITHUB_TOKEN}"
+#            }]
+#      - name: Configure Maven Toolchains
+#        uses: cactuslab/maven-toolchains-xml-action@v1
+#        with:
+#          toolchains: |
+#            [
+#              {"jdkVersion": "1.8", "jdkHome": "${{ steps.setup-java-8.outputs.path }}"},
+#              {"jdkVersion": "1.17", "jdkHome": "${{ steps.setup-java-17.outputs.path }}"}
+#            ]
       - name: Resolve Dependencies
-        run: mvn dependency:go-offline -DremoteRepositories=github,github-pgp-keys-filler
+        run: mvn dependency:go-offline
+#        run: mvn dependency:go-offline -DremoteRepositories=github,github-pgp-keys-filler
       - name: Resolve PGP Keys
         run: mvn pgpverify:go-offline -Dpgpverify.quiet=true
       - name: Clean
