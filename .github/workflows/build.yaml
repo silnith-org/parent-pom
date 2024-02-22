@@ -49,9 +49,11 @@ jobs:
 #              {"jdkVersion": "1.17", "jdkHome": "${{ steps.setup-java-17.outputs.path }}"}
 #            ]
       - name: Resolve Dependencies
+        continue-on-error: true
         run: mvn dependency:go-offline
 #        run: mvn dependency:go-offline -DremoteRepositories=github,github-pgp-keys-filler
       - name: Resolve PGP Keys
+        continue-on-error: true
         run: mvn pgpverify:go-offline -Dpgpverify.quiet=true
       - name: Clean
         run: mvn clean
