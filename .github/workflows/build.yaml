@@ -96,7 +96,6 @@ jobs:
               {"jdkVersion": "1.8", "jdkHome": "${{ steps.setup-java-8.outputs.path }}"},
               {"jdkVersion": "1.17", "jdkHome": "${{ steps.setup-java-17.outputs.path }}"},
               {"jdkVersion": "1.21", "jdkHome": "${{ steps.setup-java-21.outputs.path }}"}
-#              {"jdkVersion": "1.25", "jdkHome": "${{ steps.setup-java-25.outputs.path }}"}
             ]
 #      - name: Cache Stuff
 #        uses: actions/cache@v5
