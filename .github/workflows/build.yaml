@@ -49,11 +49,6 @@ jobs:
           servers: |
             [
               {
-                "id": "github-foo",
-                "username": "${{ env.GITHUB_ACTOR }}",
-                "password": "${{ env.GITHUB_TOKEN }}"
-              },
-              {
                 "id": "github-${{ github.repository_owner }}",
                 "username": "${{ github.actor }}",
                 "password": "${{ github.token }}"
