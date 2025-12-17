@@ -46,13 +46,35 @@ jobs:
         uses: s4u/maven-settings-action@v4.0.0
         with:
           githubServer: true
+          servers: |
+            [
+              {
+                "id": "github-foo",
+                "username": "${{ env.GITHUB_ACTOR }}",
+                "password": "${{ env.GITHUB_TOKEN }}"
+              },
+              {
+                "id": "github-${{ github.repository_owner }}",
+                "username": "${{ github.actor }}",
+                "password": "${{ github.token }}"
+              }
+            ]
+          repositories: |
+            [
+              {
+                "id": "github-${{ github.repository_owner }}",
+                "name": "GitHub ${{ github.repository_owner }}",
+                "url": "https://maven.pkg.github.com/${{ github.repository_owner }}/packages",
+                "snapshots":{"enabled":false}
+              }
+            ]
           pluginRepositories: |
             [
               {
                 "id": "github-${{ github.repository_owner }}",
                 "name": "GitHub ${{ github.repository_owner }}",
                 "url": "https://maven.pkg.github.com/${{ github.repository_owner }}/packages",
-                "snapshots":{"enabled":false},
+                "snapshots":{"enabled":false}
               }
             ]
       - name: Configure Maven Toolchains
