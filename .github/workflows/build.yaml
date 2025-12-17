@@ -90,28 +90,27 @@ jobs:
               {"jdkVersion": "1.25", "jdkHome": "${{ steps.setup-java-25.outputs.path }}"},
               {"jdkVersion": "25", "jdkHome": "${{ steps.setup-java-25.outputs.path }}"}
             ]
-#      - name: Cache Stuff
-#        uses: actions/cache@v5
-#        with:
-#          key: 'maven-${{ github.repository_owner }}-${{ hashFiles(''**/pom.xml'') }}'
-#          restore-keys: |
-#            maven-${{ github.repository_owner }}-
-#            maven-
-#          fail-on-cache-miss: false
-#          path: |
-#            ~/.m2/repository
+      # Store the entire local Maven repository as a GitHub cache.
+      # This is stupid, but GitHub does not offer a non-stupid alternative.
+      - name: Cache Maven Dependencies
+        uses: actions/cache@v5
+        with:
+          key: 'maven-${{ github.repository_owner }}-${{ hashFiles(''**/pom.xml'') }}'
+          restore-keys: |
+            maven-${{ github.repository_owner }}-
+            maven-
+          fail-on-cache-miss: false
+          path: |
+            ~/.m2/repository
       - name: Resolve Dependencies
         continue-on-error: true
         run: mvn dependency:go-offline --no-transfer-progress
-#      - name: Fetch pgp-keys-filler
+#      - name: View Settings
 #        continue-on-error: true
-#        run: mvn dependency:get -DgroupId=org.silnith -DartifactId=pgp-keys-filler -Dversion=0.0.1-SNAPSHOT --debug
-      - name: View Settings
-        continue-on-error: true
-        run: mvn help:effective-settings --no-transfer-progress
-      - name: View POM
-        continue-on-error: true
-        run: mvn help:effective-pom --no-transfer-progress
+#        run: mvn help:effective-settings --no-transfer-progress
+#      - name: View POM
+#        continue-on-error: true
+#        run: mvn help:effective-pom --no-transfer-progress
       - name: Resolve PGP Keys
         continue-on-error: true
         run: mvn pgpverify:go-offline -Dpgpverify.quiet=true
