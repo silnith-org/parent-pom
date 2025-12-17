@@ -35,12 +35,12 @@ jobs:
         with:
           distribution: temurin
           java-version: 21
-#      - id: setup-java-25
-#        name: Setup Java 25
-#        uses: actions/setup-java@v5
-#        with:
-#          distribution: temurin
-#          java-version: 25
+      - id: setup-java-25
+        name: Setup Java 25
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 25
       - id: create-settings-file
         name: Create Maven Settings
         uses: s4u/maven-settings-action@v4.0.0
@@ -52,11 +52,6 @@ jobs:
                 "id": "github-${{ github.repository_owner }}",
                 "username": "${{ github.actor }}",
                 "password": "${{ github.token }}"
-              },
-              {
-                "id": "github-${{ github.repository_owner }}-plugins",
-                "username": "${{ github.actor }}",
-                "password": "${{ github.token }}"
               }
             ]
           repositories: |
@@ -64,17 +59,15 @@ jobs:
               {
                 "id": "github-${{ github.repository_owner }}",
                 "name": "GitHub ${{ github.repository_owner }}",
-                "url": "https://maven.pkg.github.com/${{ github.repository_owner }}/packages",
-                "snapshots":{"enabled":true}
+                "url": "https://maven.pkg.github.com/${{ github.repository_owner }}/packages"
               }
             ]
           pluginRepositories: |
             [
               {
-                "id": "github-${{ github.repository_owner }}-plugins",
-                "name": "GitHub ${{ github.repository_owner }} Plugins",
-                "url": "https://maven.pkg.github.com/${{ github.repository_owner }}/packages",
-                "snapshots":{"enabled":true}
+                "id": "github-${{ github.repository_owner }}",
+                "name": "GitHub ${{ github.repository_owner }}",
+                "url": "https://maven.pkg.github.com/${{ github.repository_owner }}/packages"
               }
             ]
       - name: Configure Maven Toolchains
@@ -84,7 +77,8 @@ jobs:
             [
               {"jdkVersion": "1.8", "jdkHome": "${{ steps.setup-java-8.outputs.path }}"},
               {"jdkVersion": "1.17", "jdkHome": "${{ steps.setup-java-17.outputs.path }}"},
-              {"jdkVersion": "1.21", "jdkHome": "${{ steps.setup-java-21.outputs.path }}"}
+              {"jdkVersion": "1.21", "jdkHome": "${{ steps.setup-java-21.outputs.path }}"},
+              {"jdkVersion": "1.25", "jdkHome": "${{ steps.setup-java-25.outputs.path }}"}
             ]
 #      - name: Cache Stuff
 #        uses: actions/cache@v5
@@ -99,15 +93,15 @@ jobs:
       - name: Resolve Dependencies
         continue-on-error: true
         run: mvn dependency:go-offline --no-transfer-progress
-      - name: Fetch pgp-keys-filler
-        continue-on-error: true
-        run: mvn dependency:get -DgroupId=org.silnith -DartifactId=pgp-keys-filler -Dversion=0.0.1-SNAPSHOT --debug
+#      - name: Fetch pgp-keys-filler
+#        continue-on-error: true
+#        run: mvn dependency:get -DgroupId=org.silnith -DartifactId=pgp-keys-filler -Dversion=0.0.1-SNAPSHOT --debug
       - name: View Settings
         continue-on-error: true
-        run: mvn help:effective-settings
+        run: mvn help:effective-settings --no-transfer-progress
       - name: View POM
         continue-on-error: true
-        run: mvn help:effective-pom
+        run: mvn help:effective-pom --no-transfer-progress
       - name: Resolve PGP Keys
         continue-on-error: true
         run: mvn pgpverify:go-offline -Dpgpverify.quiet=true
