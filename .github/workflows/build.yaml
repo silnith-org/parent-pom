@@ -57,6 +57,11 @@ jobs:
                 "id": "github-${{ github.repository_owner }}-plugins",
                 "username": "${{ github.actor }}",
                 "password": "${{ github.token }}"
+              },
+              {
+                "id": "github-pgp-keys-filler",
+                "username": "${{ github.actor }}",
+                "password": "${{ github.token }}"
               }
             ]
           repositories: |
@@ -74,6 +79,12 @@ jobs:
                 "id": "github-${{ github.repository_owner }}-plugins",
                 "name": "GitHub ${{ github.repository_owner }} Plugins",
                 "url": "https://maven.pkg.github.com/${{ github.repository_owner }}/packages",
+                "snapshots":{"enabled":false}
+              },
+              {
+                "id": "github-pgp-keys-filler",
+                "name": "GitHub pgp-keys-filler",
+                "url": "https://maven.pkg.github.com/${{ github.repository_owner }}/pgp-keys-filler",
                 "snapshots":{"enabled":false}
               }
             ]
