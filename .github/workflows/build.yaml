@@ -111,6 +111,9 @@ jobs:
       - name: Resolve Dependencies
         continue-on-error: true
         run: mvn dependency:go-offline
+      - name: Fetch pgp-keys-filler
+        continue-on-error: true
+        run: mvn dependency:get -DgroupId=org.silnith -DartifactId=pgp-keys-filler -Dversion=0.0.1-SNAPSHOT
       - name: View Settings
         continue-on-error: true
         run: mvn help:effective-settings
