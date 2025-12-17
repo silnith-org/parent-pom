@@ -65,7 +65,7 @@ jobs:
                 "id": "github-${{ github.repository_owner }}",
                 "name": "GitHub ${{ github.repository_owner }}",
                 "url": "https://maven.pkg.github.com/${{ github.repository_owner }}/packages",
-                "snapshots":{"enabled":false}
+                "snapshots":{"enabled":true}
               }
             ]
           pluginRepositories: |
@@ -74,7 +74,7 @@ jobs:
                 "id": "github-${{ github.repository_owner }}-plugins",
                 "name": "GitHub ${{ github.repository_owner }} Plugins",
                 "url": "https://maven.pkg.github.com/${{ github.repository_owner }}/packages",
-                "snapshots":{"enabled":false}
+                "snapshots":{"enabled":true}
               }
             ]
       - name: Configure Maven Toolchains
