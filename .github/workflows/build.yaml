@@ -43,7 +43,7 @@ jobs:
           java-version: 25
       - id: create-settings-file
         name: Create Maven Settings
-        uses: s4u/maven-settings-action@v4
+        uses: s4u/maven-settings-action@v4.0.0
         with:
           githubServer: true
           servers: |
