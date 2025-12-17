@@ -108,15 +108,15 @@ jobs:
 #          fail-on-cache-miss: false
 #          path: |
 #            ~/.m2/repository
+      - name: Resolve Dependencies
+        continue-on-error: true
+        run: mvn dependency:go-offline
       - name: View Settings
         continue-on-error: true
         run: mvn help:effective-settings
       - name: View POM
         continue-on-error: true
         run: mvn help:effective-pom
-      - name: Resolve Dependencies
-        continue-on-error: true
-        run: mvn dependency:go-offline
       - name: Resolve PGP Keys
         continue-on-error: true
         run: mvn pgpverify:go-offline -Dpgpverify.quiet=true
