@@ -52,6 +52,11 @@ jobs:
                 "id": "github-${{ github.repository_owner }}",
                 "username": "${{ github.actor }}",
                 "password": "${{ github.token }}"
+              },
+              {
+                "id": "github-${{ github.repository_owner }}-plugins",
+                "username": "${{ github.actor }}",
+                "password": "${{ github.token }}"
               }
             ]
           repositories: |
@@ -66,8 +71,8 @@ jobs:
           pluginRepositories: |
             [
               {
-                "id": "github-${{ github.repository_owner }}",
-                "name": "GitHub ${{ github.repository_owner }}",
+                "id": "github-${{ github.repository_owner }}-plugins",
+                "name": "GitHub ${{ github.repository_owner }} Plugins",
                 "url": "https://maven.pkg.github.com/${{ github.repository_owner }}/packages",
                 "snapshots":{"enabled":false}
               }
